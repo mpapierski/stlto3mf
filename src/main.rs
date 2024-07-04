@@ -1,6 +1,9 @@
 mod utils;
 
-use std::fs::{self, OpenOptions};
+use std::{
+    fs::{self, OpenOptions},
+    path::PathBuf,
+};
 
 use anyhow::{bail, Context};
 use threemf::model::{
@@ -20,7 +23,7 @@ struct Cli {
     /// Output filename.
     name: Option<String>,
     /// List of STL files to merge.
-    stl_files: Vec<String>,
+    stl_files: Vec<PathBuf>,
 }
 
 fn main() -> anyhow::Result<()> {
@@ -33,7 +36,7 @@ fn main() -> anyhow::Result<()> {
     let mut meshes = Vec::with_capacity(cli.stl_files.len());
 
     for filename in cli.stl_files {
-        println!("Merging file: {}", filename);
+        println!("Merging file: {}", filename.to_string_lossy());
 
         let mesh = {
             let mut file = OpenOptions::new()
@@ -57,12 +60,17 @@ fn main() -> anyhow::Result<()> {
     let mut objects: Vec<_> = meshes
         .into_iter()
         .enumerate()
-        .map(|(id, (name, mesh))| Object {
-            id,
-            partnumber: Some(name.clone()),
-            name: Some(name),
-            pid: None,
-            object: ObjectData::Mesh(mesh),
+        .map(|(id, (name, mesh))| {
+            let name = name
+                .file_name()
+                .map(|file_name| file_name.to_string_lossy().into_owned());
+            Object {
+                id,
+                partnumber: name.clone(),
+                name,
+                pid: None,
+                object: ObjectData::Mesh(mesh),
+            }
         })
         .collect();
 
