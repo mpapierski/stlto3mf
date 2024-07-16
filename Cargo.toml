@@ -1,6 +1,9 @@
 [package]
 name = "stlto3mf"
 authors = ["Michał Papierski <michal@papierski.net>"]
+license-file = "LICENSE"
+homepage = "https://github.com/mpapierski/stlto3mf"
+description = "Converts one or more STL files into a single 3MF file."
 version = "0.1.0"
 edition = "2021"
 
