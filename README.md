@@ -1,5 +1,7 @@
 # STL to 3MF Converter
 
+![Crates.io Version](https://img.shields.io/crates/v/stlto3mf)
+
 `stlto3mf` is a command line tool written in Rust that merges multiple STL files representing a single object into a single 3MF file. This is especially useful for multi-material 3D printing, saving time and effort when dealing with slicer programs.
 
 ## Features
@@ -16,7 +18,13 @@
 To build from source, you need to have Rust installed. Clone the repository and build the project:
 
 ```sh
-git clone https://github.com/yourusername/stlto3mf.git
+cargo install stlto3mf
+```
+
+Or from source:
+
+```sh
+git clone https://github.com/mpapierski/stlto3mf.git
 cd stlto3mf
 cargo run
 # or
