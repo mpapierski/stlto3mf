@@ -48,10 +48,10 @@ stlto3mf [OPTIONS] --output <OUTPUT> [STL_FILES]...
 ### Options
 
 * `--output <OUTPUT>`
-  Name of a group of STLs in the final .3MF file.
+  Output filename for the 3MF file.
 
 * `--name <NAME>`
-  Output filename for the 3MF file.
+  Name of a group of STLs in the final .3MF file.
 
 * `-h, --help`
  Print help information.
@@ -66,7 +66,7 @@ stlto3mf [OPTIONS] --output <OUTPUT> [STL_FILES]...
 Merge multiple STL files into a single 3MF file with a specified output name:
 
 ```sh
-stlto3mf --output final_object --name output.3mf part1.stl part2.stl part3.stl
+stlto3mf --name final_object --output output.3mf part1.stl part2.stl part3.stl
 ```
 
 This command will merge part1.stl, part2.stl, and part3.stl into a single output.3mf file, grouping them under final_object.
